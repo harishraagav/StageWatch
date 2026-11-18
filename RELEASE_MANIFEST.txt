@@ -1,0 +1,55 @@
+StageWatch 0.2.0 - GitHub-integrated release bundle
+
+Package: stagewatch
+Version: 0.2.0 (Alpha; feature-complete evaluation release)
+Runtime requirement: Python >= 3.10
+Core runtime dependencies: None
+Optional extras: numpy, pandas, torch, all
+License: MIT
+Author / developer / maintainer: Harish Raagav K J
+Canonical GitHub repository: https://github.com/harishraagav/StageWatch
+Issues: https://github.com/harishraagav/StageWatch/issues
+
+Quick start (Windows):
+  1. Extract StageWatch_0.2.0_github_ready.zip.
+  2. Open a terminal in StageWatch-0.2.0/.
+  3. Create/activate a virtual environment.
+  4. Install the included wheel:
+       py -m pip install --upgrade --force-reinstall .\dist\stagewatch-0.2.0-py3-none-any.whl
+  5. Run the complete regression suite:
+       py run_all_tests.py
+  6. Run the three-pipeline validation:
+       py run_three_pipeline_validation.py
+  7. Run release metadata checks:
+       py scripts\release_preflight.py
+
+Included release artifacts:
+  - scripts/release_preflight.py (stdlib-only local artifact checks)
+  - dist/stagewatch-0.2.0-py3-none-any.whl
+  - dist/stagewatch-0.2.0.tar.gz
+
+Included repository automation:
+  - .github/workflows/tests.yml (multi-OS / multi-Python CI plus PyTorch integration)
+  - .github/workflows/publish.yml (GitHub release -> PyPI Trusted Publishing via OIDC)
+
+Validation:
+  - Windows / Python 3.12.13: 57 tests passed; 0 failures; 0 errors; 0 skips
+    with NumPy, Pandas and PyTorch installed.
+  - Windows three-pipeline validation: image processing, PyTorch CPU inference,
+    and Pandas data cleaning completed with 0 pipeline execution failures.
+  - Build environment: 57 tests passed; 0 failures; 0 errors; 0 skips.
+  - Wheel and source archive contain the expected package metadata, author,
+    maintainer, project URLs, license, Python floor and source files.
+  - Final ZIP must be tested after extraction using the commands above.
+
+Release status:
+  - Package source, wheel and source distribution are prepared.
+  - Repository links are recorded in pyproject.toml, README.md and CITATION.cff.
+  - The repository URL was supplied by the maintainer; this bundle preparation
+    did not push commits to GitHub or upload artifacts to PyPI.
+  - Configure PyPI Trusted Publishing for owner harishraagav, repository
+    StageWatch, workflow .github/workflows/publish.yml, environment pypi.
+  - Run remote GitHub Actions CI and `python -m twine check dist/*` before release.
+  - The PyPI project endpoints returned HTTP 404 on 2026-11-18; repeat the
+    availability check immediately before first publication. A 404 does not
+    reserve the name.

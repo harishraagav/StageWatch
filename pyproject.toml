@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stagewatch"
+version = "0.2.0"
+description = "Local-first pipeline observability with anomaly detection, schema contracts and root-cause insights."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Harish Raagav K J" }]
+maintainers = [{ name = "Harish Raagav K J" }]
+keywords = ["python", "pipeline", "observability", "profiling", "data-quality", "debugging", "ml", "etl"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Debuggers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/harishraagav/StageWatch"
+Repository = "https://github.com/harishraagav/StageWatch"
+Issues = "https://github.com/harishraagav/StageWatch/issues"
+Changelog = "https://github.com/harishraagav/StageWatch/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/harishraagav/StageWatch/tree/main/docs"
+
+[project.optional-dependencies]
+numpy = ["numpy>=1.23"]
+pandas = ["pandas>=1.5"]
+torch = ["torch>=2.0"]
+all = ["numpy>=1.23", "pandas>=1.5", "torch>=2.0"]
+dev = ["pytest>=7.4", "ruff>=0.5", "build>=1.2", "twine>=5.1"]
+
+[project.scripts]
+stagewatch = "stagewatch.cli:main"
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+stagewatch = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["E402"]

@@ -1,0 +1,6 @@
+include README.md LICENSE CHANGELOG.md CONTRIBUTING.md SECURITY.md INSTALL.md CITATION.cff RELEASE_NOTES.md RELEASE_MANIFEST.txt
+include run_all_tests.py run_three_pipeline_validation.py
+recursive-include docs *.md
+recursive-include examples *.py
+recursive-include tests *.py
+recursive-include scripts *.py

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+.stagewatch/
+test_output/
+*.sqlite3
+
+# Generated standalone HTML reports from examples/tests
+*-report.html
