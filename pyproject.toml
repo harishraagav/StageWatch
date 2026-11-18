@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stagewatch"
-version = "0.2.0"
+version = "0.2.0a1"
 description = "Local-first pipeline observability with anomaly detection, schema contracts and root-cause insights."
 readme = "README.md"
 requires-python = ">=3.10"

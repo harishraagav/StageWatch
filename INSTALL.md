@@ -1,11 +1,11 @@
-# Install and test StageWatch 0.2.0
+# Install and test StageWatch 0.2.0a1
 
-StageWatch 0.2.0 is an alpha release bundle for local evaluation. The core package has no mandatory runtime dependencies. NumPy, Pandas and PyTorch integrations are optional.
+StageWatch 0.2.0a1 is an alpha release bundle for local evaluation. The core package has no mandatory runtime dependencies. NumPy, Pandas and PyTorch integrations are optional.
 
 ## Windows (PowerShell or Command Prompt)
 
-1. Extract `StageWatch_0.2.0_complete.zip`.
-2. Open a terminal in the extracted `StageWatch-0.2.0` folder (the folder containing `pyproject.toml`).
+1. Extract `StageWatch_0.2.0a1_release_bundle.zip`.
+2. Open a terminal in the extracted `StageWatch-0.2.0a1` folder (the folder containing `pyproject.toml`).
 3. Create and activate a virtual environment:
 
    ```powershell
@@ -18,7 +18,7 @@ StageWatch 0.2.0 is an alpha release bundle for local evaluation. The core packa
 4. Install the included wheel:
 
    ```powershell
-   python -m pip install --upgrade --force-reinstall .\dist\stagewatch-0.2.0-py3-none-any.whl
+   python -m pip install --upgrade --force-reinstall .\dist\stagewatch-0.2.0a1-py3-none-any.whl
    ```
 
 5. Confirm the installed version and location:
@@ -52,7 +52,7 @@ The two test scripts use the source tree in this release folder, so they test th
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade --force-reinstall ./dist/stagewatch-0.2.0-py3-none-any.whl
+python -m pip install --upgrade --force-reinstall ./dist/stagewatch-0.2.0a1-py3-none-any.whl
 python -c "import stagewatch; print(stagewatch.__version__); print(stagewatch.__file__)"
 python run_all_tests.py
 python run_three_pipeline_validation.py
@@ -64,10 +64,10 @@ python examples/basic_pipeline.py
 Install only the integrations you need:
 
 ```bash
-python -m pip install "stagewatch[numpy]"
-python -m pip install "stagewatch[pandas]"
-python -m pip install "stagewatch[torch]"
-python -m pip install "stagewatch[all]"
+python -m pip install --pre "stagewatch[numpy]"
+python -m pip install --pre "stagewatch[pandas]"
+python -m pip install --pre "stagewatch[torch]"
+python -m pip install --pre "stagewatch[all]"
 ```
 
 In the release source folder, install optional extras from source with `python -m pip install -e ".[numpy,pandas]"` (or add `torch`). The all-in-one test runner automatically runs optional integration tests when the relevant libraries are installed and reports a skip when an optional library is absent.

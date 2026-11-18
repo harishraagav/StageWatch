@@ -2,7 +2,7 @@
 
 All notable StageWatch changes are documented here.
 
-## 0.2.0 - 2026-11-18
+## 0.2.0a1 - 2026-11-18
 
 ### Added
 - Rectangular shape inference for built-in nested lists and tuples.
