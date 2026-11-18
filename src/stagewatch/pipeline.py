@@ -16,7 +16,7 @@ from .history import HistoryStore
 from .inspection import inspect_value
 from .models import Comparison, Finding, RunRecord, StageRecord
 
-_ACTIVE: contextvars.ContextVar["_RunContext | None"] = contextvars.ContextVar("stagewatch_active_run", default=None)
+_ACTIVE: contextvars.ContextVar[_RunContext | None] = contextvars.ContextVar("stagewatch_active_run", default=None)
 _SCHEMA_FIELDS = ("type", "dtype", "shape", "mapping_keys")
 
 
@@ -67,7 +67,7 @@ class _Check:
 
 @dataclass
 class _RunContext:
-    pipeline: "Pipeline"
+    pipeline: Pipeline
     run: RunRecord
     started_perf: float
     baseline_runs: list[RunRecord] = field(default_factory=list)
@@ -83,7 +83,7 @@ class _RunContext:
 
 class StageContext:
     """Context-manager object returned by :meth:`Pipeline.stage`."""
-    def __init__(self, pipeline: "Pipeline", name: str, input_data: Any = None, has_input: bool = False) -> None:
+    def __init__(self, pipeline: Pipeline, name: str, input_data: Any = None, has_input: bool = False) -> None:
         self.pipeline = pipeline
         self.name = name
         self.input_data = input_data
@@ -101,7 +101,7 @@ class StageContext:
         self.has_output = True
         return value
 
-    def __enter__(self) -> "StageContext":
+    def __enter__(self) -> StageContext:
         active = _ACTIVE.get()
         if active is None or active.pipeline is not self.pipeline:
             self._ctx = self.pipeline._new_context()

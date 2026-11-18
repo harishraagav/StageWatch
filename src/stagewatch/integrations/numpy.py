@@ -1,6 +1,8 @@
 """NumPy integration helpers (install with ``stagewatch[numpy]``)."""
 from __future__ import annotations
+
 from typing import Any
+
 from ..inspection import inspect_value
 
 

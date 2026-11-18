@@ -1,6 +1,8 @@
 """Pandas integration helpers (install with ``stagewatch[pandas]``)."""
 from __future__ import annotations
+
 from typing import Any
+
 from ..inspection import inspect_value
 
 

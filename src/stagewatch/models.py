@@ -47,7 +47,7 @@ class StageRecord:
         return _clean(result)
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "StageRecord":
+    def from_dict(cls, data: dict[str, Any]) -> StageRecord:
         values = dict(data)
         values["findings"] = [Finding(**finding) for finding in values.get("findings", [])]
         return cls(**values)
@@ -79,7 +79,7 @@ class RunRecord:
         })
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "RunRecord":
+    def from_dict(cls, data: dict[str, Any]) -> RunRecord:
         """Load current and pre-0.2.0 records (which do not contain insights)."""
         values = dict(data)
         values["stages"] = [StageRecord.from_dict(stage) for stage in values.get("stages", [])]
