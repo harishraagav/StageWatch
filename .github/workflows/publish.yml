@@ -24,9 +24,30 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install build tools
-        run: python -m pip install --upgrade build
+      - name: Install build and validation tools
+        run: python -m pip install --upgrade build twine
+      - name: Verify release tag and package metadata agree
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          import tomllib
+          from pathlib import Path
+
+          data = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
+          version = data["project"]["version"]
+          expected_tag = f"v{version}"
+          actual_tag = os.environ["GITHUB_REF_NAME"]
+          if version != "0.2.0a1" or actual_tag != expected_tag:
+              raise SystemExit(
+                  f"Refusing publish: project version={version!r}, "
+                  f"release tag={actual_tag!r}, expected={expected_tag!r}"
+              )
+          print(f"Publishing {data['project']['name']} {version}")
+          PY
       - name: Build wheel and source distribution
         run: python -m build
+      - name: Validate distributions
+        run: python -m twine check dist/*
       - name: Publish to PyPI using Trusted Publishing
         uses: pypa/gh-action-pypi-publish@release/v1

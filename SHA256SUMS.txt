@@ -1,2 +1,7 @@
-37acbc6af13f5f0ebb4be78670d2de536d3404201b7d2b8e2bc19626f7d1ce0d  dist/stagewatch-0.2.0-py3-none-any.whl
-8ffab1eaa8ac3503e4f9d38e668e550b101a080e7714a6f99a21642baa267777  dist/stagewatch-0.2.0.tar.gz
+This file is intentionally not populated with distribution hashes in the Git source tree.
+
+The PyPI publish workflow builds distributions directly from the tagged source
+(v0.2.0a1). The GitHub release workflow validates them with Twine immediately
+before upload. Hashes for a separately generated local release bundle must be
+generated from those exact local files and must not be reused for a different
+source snapshot.
