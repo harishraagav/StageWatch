@@ -1,109 +1,72 @@
-# Publishing StageWatch 0.2.0
+# Publishing StageWatch 0.2.0a1
 
 ## Release ownership
 
-StageWatch is authored, developed and maintained by **Harish Raagav K J**. The
-package metadata, README, citation file and MIT copyright notice use that
-attribution. No author email address is included because one has not been
-provided.
+StageWatch is authored, developed and maintained solely by **Harish Raagav K J**. The package metadata, README, citation file and MIT copyright notice use that attribution.
 
-## Current release state
+## Verified repository and CI state
 
-The 0.2.0 source bundle and distributions are prepared and have passed the
-maintainer's reported Windows validation: 57 tests, zero failures, zero errors
-and zero skips with NumPy, Pandas and PyTorch installed. Three additional
-pipeline scenarios completed. This does not replace the remote GitHub Actions
-CI matrix or a final test immediately before upload.
+- Canonical repository: https://github.com/harishraagav/StageWatch
+- Release branch: main
+- The GitHub Actions run for commit a70261063c0f2359d6b09581ab20dfc7d53cd2c4 completed **16/16 jobs successfully**. It covered Ubuntu, Windows and macOS with Python 3.10–3.14, Ruff, builds, artifact preflight, Twine validation and a separate PyTorch integration job.
+- The maintainer reports that the PyPI Trusted Publisher has been configured for this repository. Confirm that its project, workflow and environment match the values below before publishing.
 
-The normalized PyPI project endpoints were checked on 2026-11-18 and returned
-HTTP 404 at the time of the check:
+## PyPI Trusted Publishing configuration
 
-- https://pypi.org/project/stagewatch/
-- https://pypi.org/pypi/stagewatch/json
+| Setting | Value |
+|---|---|
+| PyPI project | stagewatch |
+| Owner | harishraagav |
+| Repository | StageWatch |
+| Workflow filename | publish.yml |
+| GitHub environment | pypi |
 
-This suggests no project was registered under that name at check time. PyPI
-project names are first-come, first-served; repeat the check immediately before
-creating the project or publishing. A 404 is not a name reservation.
+The workflow at .github/workflows/publish.yml runs when a GitHub Release is published. It builds the wheel and source distribution from the release tag, then publishes using GitHub OIDC via PyPI Trusted Publishing. No PyPI API token is required.
 
-## Canonical GitHub repository
+## Release version
 
-The maintainer has supplied the canonical repository:
+The first public alpha pre-release is **0.2.0a1**, with Git tag **v0.2.0a1**. Keep pyproject.toml, src/stagewatch/__init__.py, CITATION.cff, CHANGELOG.md and RELEASE_NOTES.md aligned.
 
-- Repository: https://github.com/harishraagav/StageWatch
-- Issues: https://github.com/harishraagav/StageWatch/issues
-- Test workflow: https://github.com/harishraagav/StageWatch/actions/workflows/tests.yml
-- Publish workflow: `.github/workflows/publish.yml`
+## Create the GitHub prerelease
 
-The repository URL is recorded in `pyproject.toml`, `README.md` and
-`CITATION.cff`. The release owner must ensure the repository is public and that
-its default branch contains this exact release source before creating `v0.2.0`.
+1. Open https://github.com/harishraagav/StageWatch/releases/new.
+2. Choose **Create a new tag** and enter v0.2.0a1.
+3. Set the target to main.
+4. Set the release title to StageWatch 0.2.0a1.
+5. Use the contents of RELEASE_NOTES.md as the release description.
+6. Check **Set as a pre-release**.
+7. Publish the release.
 
-## Remaining publication steps
+Publishing the GitHub Release triggers .github/workflows/publish.yml. Monitor the Actions run. A successful workflow should create the PyPI release at https://pypi.org/project/stagewatch/.
 
-1. Confirm the `stagewatch` name is still available on PyPI immediately before
-   configuring the publisher. A prior 404 check is not a reservation.
-2. Configure PyPI Trusted Publishing for owner `harishraagav`, repository
-   `StageWatch`, workflow file `.github/workflows/publish.yml`, and GitHub
-   environment `pypi`. If the PyPI project has not yet been created, add the
-   publisher as a pending publisher on PyPI.
-3. Push this source to the `main` branch and wait for the full GitHub Actions test
-   matrix to pass.
-4. Create and publish a GitHub release tagged `v0.2.0`. The publish workflow
-   builds the distributions and uploads them using GitHub OIDC; no PyPI API
-   token is needed when Trusted Publishing is configured correctly.
+## Verify after publication
 
-## Connect the local release source to GitHub
+Use a clean virtual environment and explicitly allow pre-releases:
 
-If the GitHub repository is empty, from the extracted project root run:
+    python -m pip install --upgrade pip
+    python -m pip install --pre stagewatch
+    python -c "import stagewatch; print(stagewatch.__version__)"
+    python -m pip show stagewatch
 
-```bash
-git init -b main
-git add .
-git commit -m "Prepare StageWatch 0.2.0 release"
-git remote add origin https://github.com/harishraagav/StageWatch.git
-git push -u origin main
-```
-
-If the repository already contains commits or files, clone it first and merge
-this release source into that working tree instead of force-pushing. Review the
-existing README, license, workflows and branch protections before resolving any
-conflicts. Do not use `git push --force` to overwrite the repository.
+The imported version must be 0.2.0a1. Optional integrations can be installed with:
+- python -m pip install --pre "stagewatch[numpy]"
+- python -m pip install --pre "stagewatch[pandas]"
+- python -m pip install --pre "stagewatch[torch]"
+- python -m pip install --pre "stagewatch[all]"
 
 ## Local release checks
 
-Run these from the project root in a clean environment:
+From the repository root:
 
-```bash
-python -m pip install -e ".[dev,numpy,pandas,torch]"
-python run_all_tests.py
-python run_three_pipeline_validation.py
-python -m build
-python scripts/release_preflight.py
-python -m twine check dist/*
-```
+    python -m pip install -e ".[dev,numpy,pandas,torch]"
+    python run_all_tests.py
+    python run_three_pipeline_validation.py
+    python -m build
+    python scripts/release_preflight.py
+    python -m twine check dist/*
 
-The optional integration dependencies can be installed separately if a given
-platform does not have compatible wheels for all extras. The test runner skips
-optional integration tests only when the corresponding dependency is absent.
+Do not publish if the built wheel or source archive differs from version 0.2.0a1. Do not upload stale 0.2.0 artifacts.
 
-## Publish flow
+## Security notes
 
-The recommended path is GitHub Actions with PyPI Trusted Publishing. The
-workflow in `.github/workflows/publish.yml` runs on a published GitHub release,
-builds wheel and source archive, then invokes the official PyPI publishing
-action with an OIDC identity token. Configure the same repository, workflow
-filename and environment name in PyPI's Trusted Publisher settings.
-
-Do not commit PyPI tokens, passwords, recovery codes or other credentials.
-Do not put credentials in the repository, workflow file or issue tracker.
-
-## Manual fallback (only if Trusted Publishing cannot be used)
-
-```bash
-python -m build
-python -m twine check dist/*
-python -m twine upload dist/*
-```
-
-Use a narrowly scoped PyPI API token and enter it interactively when Twine asks.
-Never store the token in source control or in this ZIP.
+Do not commit PyPI tokens, passwords, recovery codes or other credentials. Trusted Publishing uses an OIDC identity token issued to the GitHub Actions job.

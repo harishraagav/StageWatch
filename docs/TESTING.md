@@ -1,4 +1,4 @@
-# Testing StageWatch 0.2.0
+# Testing StageWatch 0.2.0a1
 
 ## Complete regression suite
 

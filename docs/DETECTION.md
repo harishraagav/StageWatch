@@ -1,6 +1,6 @@
 # Detection methods and interpretation
 
-StageWatch 0.2.0 includes deterministic checks and statistical heuristics. Findings are evidence to investigate, not a guarantee that data is wrong.
+StageWatch 0.2.0a1 includes deterministic checks and statistical heuristics. Findings are evidence to investigate, not a guarantee that data is wrong.
 
 ## Deterministic checks
 

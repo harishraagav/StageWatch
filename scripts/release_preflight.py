@@ -18,7 +18,7 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 EXPECTED_NAME = "stagewatch"
-EXPECTED_VERSION = "0.2.0"
+EXPECTED_VERSION = "0.2.0a1"
 EXPECTED_OWNER = "Harish Raagav K J"
 EXPECTED_REPOSITORY = "https://github.com/harishraagav/StageWatch"
 
@@ -99,18 +99,18 @@ def validate_metadata(metadata, label: str) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate StageWatch 0.2.0 release files.")
+    parser = argparse.ArgumentParser(description="Validate StageWatch 0.2.0a1 release files.")
     parser.add_argument("--verify-checksums", action="store_true", help="also verify SHA256SUMS.txt (use against the exact bundled dist/ files)")
     args = parser.parse_args()
 
-    print("StageWatch 0.2.0 release artifact preflight")
+    print("StageWatch 0.2.0a1 release artifact preflight")
     print(f"Project root: {ROOT}")
-    wheels = sorted(DIST.glob("stagewatch-0.2.0-*.whl"))
-    sdists = sorted(DIST.glob("stagewatch-0.2.0.tar.gz"))
+    wheels = sorted(DIST.glob("stagewatch-0.2.0a1-*.whl"))
+    sdists = sorted(DIST.glob("stagewatch-0.2.0a1.tar.gz"))
     if len(wheels) != 1:
-        fail(f"expected exactly one 0.2.0 wheel in {DIST}, found {len(wheels)}")
+        fail(f"expected exactly one 0.2.0a1 wheel in {DIST}, found {len(wheels)}")
     if len(sdists) != 1:
-        fail(f"expected exactly one 0.2.0 source archive in {DIST}, found {len(sdists)}")
+        fail(f"expected exactly one 0.2.0a1 source archive in {DIST}, found {len(sdists)}")
     validate_metadata(read_wheel_metadata(wheels[0]), "Wheel metadata")
     validate_metadata(read_sdist_metadata(sdists[0]), "Source metadata")
 

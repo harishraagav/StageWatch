@@ -1,6 +1,6 @@
 # Feature matrix
 
-| Feature group | 0.2.0 status | Notes |
+| Feature group | 0.2.0a1 status | Notes |
 |---|---|---|
 | Execution tracking | Included | Sequential decorator, context-manager and manual APIs; run IDs, order, durations and exceptions |
 | Input/output inspection | Included | Built-in values and optional NumPy, Pandas, PyTorch support |
@@ -20,7 +20,7 @@
 
 ## Known limitations
 
-- StageWatch is designed for sequential synchronous pipelines. Async, concurrent, branched and distributed orchestration are not a first-class 0.2.0 feature.
+- StageWatch is designed for sequential synchronous pipelines. Async, concurrent, branched and distributed orchestration are not a first-class 0.2.0a1 feature.
 - Root-cause attribution is a heuristic based on observed stage boundaries, not proof of function-level causality.
 - IQR outliers and distribution shifts are statistical signals; they may flag valid rare events or miss anomalies that are not distributional.
 - Mixed-scale Pandas columns are assessed independently for IQR outliers and drift; non-numeric columns receive missing-value and structural checks, not numeric drift.

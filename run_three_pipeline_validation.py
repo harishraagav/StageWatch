@@ -40,7 +40,7 @@ except ImportError as exc:  # pragma: no cover - environment-specific help
     print("Activate the package's virtual environment, then run:")
     print("  python -m pip install -e .")
     print("or install the wheel from dist/:")
-    print("  python -m pip install --force-reinstall .\\dist\\stagewatch-0.2.0-py3-none-any.whl")
+    print("  python -m pip install --force-reinstall .\\dist\\stagewatch-0.2.0a1-py3-none-any.whl")
     raise SystemExit(2) from exc
 
 # Optional integrations. The test remains runnable without any of them.
