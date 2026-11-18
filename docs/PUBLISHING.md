@@ -1,4 +1,4 @@
-# Publishing StageWatch 0.2.0a1
+# Publishing StageWatch 0.2.0
 
 ## Release ownership
 
@@ -25,34 +25,34 @@ The workflow at .github/workflows/publish.yml runs when a GitHub Release is publ
 
 ## Release version
 
-The first public alpha pre-release is **0.2.0a1**, with Git tag **v0.2.0a1**. Keep pyproject.toml, src/stagewatch/__init__.py, CITATION.cff, CHANGELOG.md and RELEASE_NOTES.md aligned.
+The regular public release is **0.2.0**, with Git tag **v0.2.0**. Keep pyproject.toml, src/stagewatch/__init__.py, CITATION.cff, CHANGELOG.md and RELEASE_NOTES.md aligned.
 
-## Create the GitHub prerelease
+## Create the GitHub release
 
 1. Open https://github.com/harishraagav/StageWatch/releases/new.
-2. Choose **Create a new tag** and enter v0.2.0a1.
+2. Choose **Create a new tag** and enter v0.2.0.
 3. Set the target to main.
-4. Set the release title to StageWatch 0.2.0a1.
+4. Set the release title to StageWatch 0.2.0.
 5. Use the contents of RELEASE_NOTES.md as the release description.
-6. Check **Set as a pre-release**.
+6. Leave **Set as a pre-release** unchecked.
 7. Publish the release.
 
 Publishing the GitHub Release triggers .github/workflows/publish.yml. Monitor the Actions run. A successful workflow should create the PyPI release at https://pypi.org/project/stagewatch/.
 
 ## Verify after publication
 
-Use a clean virtual environment and explicitly allow pre-releases:
+Use a clean virtual environment:
 
     python -m pip install --upgrade pip
-    python -m pip install --pre stagewatch
+    python -m pip install stagewatch
     python -c "import stagewatch; print(stagewatch.__version__)"
     python -m pip show stagewatch
 
-The imported version must be 0.2.0a1. Optional integrations can be installed with:
-- python -m pip install --pre "stagewatch[numpy]"
-- python -m pip install --pre "stagewatch[pandas]"
-- python -m pip install --pre "stagewatch[torch]"
-- python -m pip install --pre "stagewatch[all]"
+The imported version must be 0.2.0. Optional integrations can be installed with:
+- python -m pip install "stagewatch[numpy]"
+- python -m pip install "stagewatch[pandas]"
+- python -m pip install "stagewatch[torch]"
+- python -m pip install "stagewatch[all]"
 
 ## Local release checks
 
@@ -65,7 +65,7 @@ From the repository root:
     python scripts/release_preflight.py
     python -m twine check dist/*
 
-Do not publish if the built wheel or source archive differs from version 0.2.0a1. Do not upload stale 0.2.0 artifacts.
+Do not publish if the built wheel or source archive differs from version 0.2.0. Do not upload stale 0.2.0 artifacts.
 
 ## Security notes
 

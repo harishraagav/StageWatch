@@ -1,6 +1,6 @@
 # StageWatch 0.2.0 Release Notes
 
-**StageWatch 0.2.0 — Alpha**
+**StageWatch 0.2.0 — Public release**
 
 StageWatch 0.2.0 focuses on making pipeline findings more useful and reducing false-positive noise when data dimensions are expected to vary.
 
@@ -32,4 +32,4 @@ Expected package version: `0.2.0`.
 
 ## Release status
 
-This is an alpha source release prepared for local evaluation and eventual public distribution. It has not been published to PyPI. Verify the package name, metadata, ownership, build artifacts and full CI matrix before publishing. Real-world production stability has not been certified.
+This is the regular public 0.2.0 release, not a PyPI pre-release. Normal `pip install stagewatch` resolution applies. StageWatch is still evolving; statistical findings are advisory, and real-world production stability has not been certified.

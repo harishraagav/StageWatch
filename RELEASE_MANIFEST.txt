@@ -1,7 +1,7 @@
-StageWatch 0.2.0a1 - public alpha release metadata
+StageWatch 0.2.0 - public release metadata
 
 Package: stagewatch
-Version: 0.2.0a1 (first public alpha pre-release)
+Version: 0.2.0 (regular public release)
 Runtime requirement: Python >= 3.10
 Core runtime dependencies: None
 Optional extras: numpy, pandas, torch, all
@@ -9,21 +9,21 @@ License: MIT
 Author / developer / maintainer: Harish Raagav K J
 Canonical GitHub repository: https://github.com/harishraagav/StageWatch
 Issues: https://github.com/harishraagav/StageWatch/issues
-GitHub release tag: v0.2.0a1
+GitHub release tag: v0.2.0
 
 The GitHub Actions release workflow builds the wheel and source distribution
-from the v0.2.0a1 tag and publishes them to PyPI using Trusted Publishing.
+from the v0.2.0 tag and publishes them to PyPI using Trusted Publishing.
 No stale distribution files from earlier versions should be uploaded.
 
-After PyPI publication, install this alpha pre-release with:
-  python -m pip install --pre stagewatch
+After PyPI publication, install the regular release with:
+  python -m pip install stagewatch
 
 Validation completed locally for the release candidate:
   - 57 tests passed; 0 failures; 0 errors; 0 skips.
   - NumPy, Pandas and PyTorch CPU integrations exercised.
   - Three synthetic pipeline scenarios completed without execution failures.
-  - Built wheel and source archive identify version 0.2.0a1.
+  - Built wheel and source archive identify version 0.2.0.
   - Package preflight and checksum verification passed.
-  - Isolated wheel installation reports stagewatch.__version__ == 0.2.0a1.
+  - Isolated wheel installation reports stagewatch.__version__ == 0.2.0.
 
-Remote GitHub Actions must pass for the final 0.2.0a1 commit before publishing.
+Remote GitHub Actions must pass for the final 0.2.0 commit before publishing.

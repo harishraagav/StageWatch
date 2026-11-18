@@ -11,7 +11,7 @@
 
 **Author, developer and maintainer:** Harish Raagav K J  
 
-> **Current release: 0.2.0a1 — First public alpha pre-release.** This release adds dynamic shape contracts, IQR outlier detection, distribution-shift checks, robust performance baselines, upstream-change aggregation, and root-cause-oriented reporting. It is suitable for evaluation and integration testing; it is not a substitute for production monitoring or a correctness proof.
+> **Current release: 0.2.0 — Public release.** This release adds dynamic shape contracts, IQR outlier detection, distribution-shift checks, robust performance baselines, upstream-change aggregation, and root-cause-oriented reporting. It is suitable for evaluation and integration testing; it is not a substitute for production monitoring or a correctness proof.
 
 StageWatch is a local-first observability toolkit for sequential Python functions and data-processing pipelines. The core uses the Python standard library only. NumPy, Pandas and PyTorch support are optional extras.
 
@@ -45,16 +45,16 @@ export               SUCCESS      1.21 ms
 
 ## Install
 
-**Release status:** StageWatch 0.2.0a1 is the first public alpha pre-release. Once it is published to PyPI, install it with `--pre` so pip considers pre-release versions:
+**Release status:** StageWatch 0.2.0 is the regular public release. Install it from PyPI with:
 
 ```bash
-python -m pip install --pre stagewatch
+python -m pip install stagewatch
 ```
 
 To install the included wheel from this release bundle before publication:
 
 ```powershell
-py -m pip install --upgrade --force-reinstall .\dist\stagewatch-0.2.0a1-py3-none-any.whl
+py -m pip install --upgrade --force-reinstall .\dist\stagewatch-0.2.0-py3-none-any.whl
 ```
 
 Optional integrations from this extracted source tree:
@@ -66,7 +66,7 @@ python -m pip install ".[torch]"
 python -m pip install ".[all]"
 ```
 
-After PyPI publication, install optional extras with `python -m pip install --pre "stagewatch[numpy]"` (or `pandas`, `torch`, or `all`).
+After PyPI publication, install optional extras with `python -m pip install "stagewatch[numpy]"` (or `pandas`, `torch`, or `all`).
 
 Core dependencies: **none**. Python: **3.10+**.
 
@@ -306,7 +306,7 @@ Use `storage_dir=None` or `history=False` to keep history in memory only. `deep_
 - Exception messages can contain application data; inspect them before sharing reports or databases.
 - Python object footprint estimates are approximate, not process RSS or exact allocator measurements.
 - Inspections are best-effort and bounded; custom classes need a registered inspector for meaningful summaries.
-- The package is synchronous and designed for sequential pipelines. Async/concurrent/branched orchestration is not a first-class 0.2.0a1 feature.
+- The package is synchronous and designed for sequential pipelines. Async/concurrent/branched orchestration is not a first-class supported API.
 
 ## Development and testing
 
